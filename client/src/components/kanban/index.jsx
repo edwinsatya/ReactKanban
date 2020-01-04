@@ -1,17 +1,26 @@
 import React, { Component } from "react";
+import { CardComponent } from "../../components";
+import { Grid, Container } from "@material-ui/core";
 
 class KanbanComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      kanban: []
+    };
   }
 
   render() {
     return (
-      <React.Fragment>
-        <h1>ini kanban</h1>
-        <p>tes</p>
-      </React.Fragment>
+      <div>
+        <Container>
+          <Grid container direction="row" justify="space-between">
+            <CardComponent />
+            <CardComponent />
+            <CardComponent />
+          </Grid>
+        </Container>
+      </div>
     );
   }
 }

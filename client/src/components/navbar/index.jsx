@@ -4,7 +4,7 @@ import { Box, Toolbar, Container, Grid } from "@material-ui/core";
 const navbarComponent = () => {
   return (
     <div>
-      <Box component="navbar">
+      <Box>
         <Toolbar
           variant="dense"
           style={{
@@ -15,10 +15,7 @@ const navbarComponent = () => {
           }}
         >
           <Container maxWidth="lg">
-            <Grid
-              justify="center"
-              style={{ textAlign: "center", color: "white" }}
-            >
+            <Grid style={{ textAlign: "center", color: "white" }}>
               <h1>KANBAN</h1>
             </Grid>
           </Container>
