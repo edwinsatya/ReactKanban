@@ -11,22 +11,39 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CardComponent = () => {
+const CardComponent = props => {
   const classes = useStyles();
 
   return (
     <Fragment>
       <Card className={classes.card}>
         <CardHeader
-          title="Todo"
+          title={props.data.title}
           style={{
             borderBottom: "1px solid black",
-            backgroundColor: "pink",
-            textAlign: "center"
+            backgroundColor: props.data.color,
+            textAlign: "center",
+            color: "white"
           }}
         ></CardHeader>
         <CardContent>
-          <p>tes</p>
+          {props.data.kanban.map((data, index) => {
+            return (
+              <Card key={index}>
+                <CardContent
+                  style={{
+                    border: "1px dotted black",
+                    display: "flex",
+                    alignContent: "center",
+                    justifyContent: "center",
+                    marginTop: "10px"
+                  }}
+                >
+                  {data.input}
+                </CardContent>
+              </Card>
+            );
+          })}
         </CardContent>
       </Card>
     </Fragment>

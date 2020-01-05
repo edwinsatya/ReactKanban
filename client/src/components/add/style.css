@@ -1,7 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400i&display=swap");
 
-.App {
-  margin: 0px;
-  padding: 0px;
+.Add {
   font-family: "Montserrat", sans-serif;
+}
+
+.Add:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.btn-close:hover {
+  cursor: pointer;
 }
