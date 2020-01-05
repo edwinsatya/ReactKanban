@@ -29,20 +29,40 @@ class KanbanComponent extends Component {
     };
   }
 
-  handleChange = newData => {
+  handleNewKanbans = newData => {
     this.state.kanbans.map((data, index) => {
-      if (data.status === newData.status) {
+      if (data.status === newData.newStatus) {
         let newKanban = this.state.kanbans;
-        newKanban[index].kanban.unshift(newData);
-        this.setState(
-          {
-            kanbans: newKanban
-          },
-          () => {
-            console.log(this.state.kanbans);
-          }
-        );
+        newKanban[index].kanban.unshift({
+          id: newData.id,
+          status: newData.newStatus,
+          input: newData.input
+        });
+        this.setState({
+          kanbans: newKanban
+        });
       }
+    });
+  };
+
+  handleChangeStatus = payload => {
+    this.handleDelete(payload);
+    this.handleNewKanbans(payload);
+  };
+
+  handleDelete = payload => {
+    let newKanban = this.state.kanbans;
+    newKanban.map((data, indexParent) => {
+      if (data.status === payload.status) {
+        data.kanban.map((item, indexChild) => {
+          if (item.id === payload.id) {
+            newKanban[indexParent].kanban.splice(indexChild, 1);
+          }
+        });
+      }
+    });
+    this.setState({
+      kanbans: newKanban
     });
   };
 
@@ -51,11 +71,18 @@ class KanbanComponent extends Component {
       <div>
         <Container>
           <AddComponent
-            handleChangeKanbans={value => this.handleChange(value)}
+            handleNewKanbans={value => this.handleNewKanbans(value)}
           />
           <Grid container direction="row" justify="space-between">
             {this.state.kanbans.map(data => {
-              return <CardComponent key={data.status} data={data} />;
+              return (
+                <CardComponent
+                  key={data.status}
+                  data={data}
+                  deleteKanban={payload => this.handleDelete(payload)}
+                  changeStatus={payload => this.handleChangeStatus(payload)}
+                />
+              );
             })}
           </Grid>
         </Container>

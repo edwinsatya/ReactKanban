@@ -10,7 +10,7 @@ class AddComponent extends Component {
       form: {
         id: "",
         input: "",
-        status: "todo"
+        newStatus: "todo"
       },
       changeForm: false
     };
@@ -26,7 +26,7 @@ class AddComponent extends Component {
     let defaultform = {
       id: "",
       input: "",
-      status: "todo"
+      newStatus: "todo"
     };
     this.setState({
       changeForm: false,
@@ -44,14 +44,14 @@ class AddComponent extends Component {
     });
   };
 
-  handleChangeKanbans = value => {
-    this.props.handleChangeKanbans(value);
+  handleNewKanbans = value => {
+    this.props.handleNewKanbans(value);
     this.hiddenInput();
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.handleChangeKanbans(this.state.form);
+    this.handleNewKanbans(this.state.form);
   };
 
   render() {
